@@ -21,6 +21,6 @@ with open('credentials.json') as creds_file:
             print(df1.head())
             print(df2.head())
             df2.rename(columns={'Ext_TransID': 'TRANSFER_ID'}, inplace=True)
-            df = pd.merge(df1, df2, on='TRANSFER_ID', how='inner')
+            df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus"]], on='TRANSFER_ID', how='inner')
             print(df.head())
             df.to_csv('outputs/Tigo2TTCL_20200821.csv')
