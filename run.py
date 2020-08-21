@@ -16,7 +16,10 @@ with open('credentials.json') as creds_file:
         r_f1 = f't-pesa/TIGO/Data/Exchangefiles/{f1}'
         r_f2 = f't-pesa/TTCL/{f2}'
         with sfpt.open(r_f1) as csv_file1, sfpt.open(r_f2) as csv_file2:
-            data1 = pd.read_csv(csv_file1)
-            data2 = pd.read_csv(csv_file2)
-            print(data1.head())
-            print(data2.head())
+            df1 = pd.read_csv(csv_file1)
+            df2 = pd.read_csv(csv_file2)
+            print(df1.head())
+            print(df2.head())
+            df2.rename(columns={'Ext_TransID': 'TRANSFER_ID'}, inplace=True)
+            df = pd.merge(df1, df2, on='TRANSFER_ID', how='inner')
+            print(df.head())
