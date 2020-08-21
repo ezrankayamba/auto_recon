@@ -13,4 +13,4 @@ def get_files(cat):
     other_tmpl = cat['other']['tmpl']
     tigo_file = f'{tigo_dir}{tigo_tmpl.replace("[DATE]", tigo_date)}'
     other_file = f'{other_dir}{other_tmpl.replace("[DATE]", other_date)}'
-    return (tigo_file, other_file)
+    return (tigo_file, other_file, yest)
