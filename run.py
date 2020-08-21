@@ -1,5 +1,6 @@
 import json
 import pysftp
+import pandas as pd
 
 BASE_REMOTE_DIR = '/data/exchangefiles/'
 with open('credentials.json') as creds_file:
@@ -14,3 +15,5 @@ with open('credentials.json') as creds_file:
         r_file = f'airtelmoney/AIRTEL/{f_name}'
         with sfpt.open(r_file) as csv_file:
             print(csv_file)
+            data = pd.read_csv(csv_file)
+            print(data.head())
