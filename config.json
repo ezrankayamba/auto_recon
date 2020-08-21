@@ -1,0 +1,17 @@
+{
+  "categories": [
+    {
+      "name": "Tigo2TTCL",
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "t-pesa/TIGO/Data/Exchangefiles/",
+        "tmpl": "W2B_[DATE].csv"
+      },
+      "other": {
+        "dateFmt": "%Y-%m-%d",
+        "directory": "t-pesa/TTCL/",
+        "tmpl": "TIGO_TTCL_[DATE].csv"
+      }
+    }
+  ]
+}
