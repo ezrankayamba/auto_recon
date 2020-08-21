@@ -11,7 +11,7 @@ with open('credentials.json') as creds_file:
     print(creds)
     with pysftp.Connection(**creds) as sfpt:
         print('Connected...')
-        f1 = f'W2B_15082020.csv'
+        f1 = f'W2B_20082020.csv'
         f2 = f'TIGO_TTCL_2020-08-20.csv'
         r_f1 = f't-pesa/TIGO/Data/Exchangefiles/{f1}'
         r_f2 = f't-pesa/TTCL/{f2}'
