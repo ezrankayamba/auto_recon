@@ -16,7 +16,8 @@
       },
       "columns": {
         "Ext_TransID": "TRANSFER_ID",
-        "TransID": "ReceiptNo"
+        "TransID": "ReceiptNo",
+        "TransStatus": "TransStatus"
       }
     },
     {
@@ -35,7 +36,8 @@
       },
       "columns": {
         "Thirdpartyreference": "TRANSFER_ID",
-        "TransactionId": "ReceiptNo"
+        "TransactionId": "ReceiptNo",
+        "TransactionStatus": "TransStatus"
       }
     }
   ]
