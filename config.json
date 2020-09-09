@@ -19,13 +19,13 @@
       "name": "Tigo2Voda",
       "tigo": {
         "dateFmt": "%d%m%Y",
-        "directory": "/data/exchangefiles/mpesa/TIGO/",
+        "directory": "mpesa/TIGO/",
         "tmpl": "W2B_[DATE].csv",
         "day": -1
       },
       "other": {
         "dateFmt": "%Y%m%d",
-        "directory": "/data/exchangefiles/mpesa/VODA/New_Path/",
+        "directory": "mpesa/VODA/New_Path/",
         "tmpl": "TIGO_RECON_FILES_B2C_[DATE].csv",
         "day": 0
       }
