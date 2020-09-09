@@ -2,6 +2,7 @@ import json
 import pysftp
 import pandas as pd
 import utils
+import os
 
 BASE_REMOTE_DIR = '/data/exchangefiles/'
 with open('credentials.json') as creds_file:
@@ -27,6 +28,9 @@ with open('credentials.json') as creds_file:
                     print(df.head())
                     name = cat['name']
                     dt_str = tg_file_date.strftime('%Y%m%d')
-                    df1.to_csv(f'outputs/{name}/Tigo_{name}_{dt_str}.csv', index=False)
-                    df2.to_csv(f'outputs/{name}/Other_{name}_{dt_str}.csv', index=False)
-                    df.to_csv(f'outputs/{name}/Result_{name}_{dt_str}.csv', index=False)
+                    path = f'outputs/{name}'
+                    if not os.path.exists(path):
+                        os.makedirs(path)
+                        df1.to_csv(f'{path}/Tigo_{name}_{dt_str}.csv', index=False)
+                        df2.to_csv(f'{path}/Other_{name}_{dt_str}.csv', index=False)
+                        df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
