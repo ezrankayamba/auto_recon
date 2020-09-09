@@ -24,7 +24,7 @@
         "day": -1
       },
       "other": {
-        "dateFmt": "%Y-%m-%d",
+        "dateFmt": "%Y%m%d",
         "directory": "/data/exchangefiles/mpesa/VODA/New_Path/",
         "tmpl": "TIGO_RECON_FILES_B2C_[DATE].csv",
         "day": 0
