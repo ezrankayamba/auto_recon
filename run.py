@@ -27,4 +27,6 @@ with open('credentials.json') as creds_file:
                     print(df.head())
                     name = cat['name']
                     dt_str = tg_file_date.strftime('%Y%m%d')
-                    df.to_csv(f'outputs/{name}_{dt_str}.csv', index=False)
+                    df1.to_csv(f'outputs/Tigo_{name}_{dt_str}.csv', index=False)
+                    df2.to_csv(f'outputs/Other_{name}_{dt_str}.csv', index=False)
+                    df.to_csv(f'outputs/Result_{name}_{dt_str}.csv', index=False)
