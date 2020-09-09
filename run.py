@@ -21,7 +21,7 @@ with open('credentials.json') as creds_file:
                     df1 = pd.read_csv(csv_file1)
                     df2 = pd.read_csv(csv_file2)
                     # print(df1.head())
-                    # print(df2.head())
+                    print(df2.head())
                     df2.rename(columns={'Ext_TransID': 'TRANSFER_ID', 'TransID': 'ReceiptNo'}, inplace=True)
                     df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='inner')
                     print(df.head())
