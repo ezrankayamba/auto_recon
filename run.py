@@ -16,6 +16,7 @@ with open('credentials.json') as creds_file:
             categories = json.load(file)['categories']
             for cat in categories:
                 r_f1, r_f2, tg_file_date, ot_file_date = utils.get_files(cat)
+                print(r_f1, r_f2)
                 with sfpt.open(r_f1) as csv_file1, sfpt.open(r_f2) as csv_file2:
                     df1 = pd.read_csv(csv_file1)
                     df2 = pd.read_csv(csv_file2)
