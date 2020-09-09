@@ -13,6 +13,10 @@
         "directory": "t-pesa/TTCL/",
         "tmpl": "TIGO_TTCL_[DATE].csv",
         "day": -1
+      },
+      "columns": {
+        "Ext_TransID": "TRANSFER_ID",
+        "TransID": "ReceiptNo"
       }
     },
     {
@@ -28,6 +32,10 @@
         "directory": "mpesa/VODA/New_Path/",
         "tmpl": "TIGO_RECON_FILES_B2C_[DATE].csv",
         "day": 0
+      },
+      "columns": {
+        "Thirdpartyreference": "TRANSFER_ID",
+        "TransactionId": "ReceiptNo"
       }
     }
   ]
