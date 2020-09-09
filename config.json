@@ -5,12 +5,29 @@
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "t-pesa/TIGO/Data/Exchangefiles/",
-        "tmpl": "W2B_[DATE].csv"
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
       },
       "other": {
         "dateFmt": "%Y-%m-%d",
         "directory": "t-pesa/TTCL/",
-        "tmpl": "TIGO_TTCL_[DATE].csv"
+        "tmpl": "TIGO_TTCL_[DATE].csv",
+        "day": -1
+      }
+    },
+    {
+      "name": "Tigo2Voda",
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "/data/exchangefiles/mpesa/TIGO/",
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y-%m-%d",
+        "directory": "/data/exchangefiles/mpesa/VODA/New_Path/",
+        "tmpl": "TIGO_RECON_FILES_B2C_[DATE].csv",
+        "day": 0
       }
     }
   ]

@@ -4,7 +4,7 @@ import datetime
 
 def get_files(cat):
     today = datetime.date.today()
-    yest = today - datetime.timedelta(days=1)
+    yest = today - datetime.timedelta(days=cat['day'])
     tigo_date = yest.strftime(cat['tigo']['dateFmt'])
     other_date = yest.strftime(cat['other']['dateFmt'])
     tigo_dir = cat['tigo']['directory']
