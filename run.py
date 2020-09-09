@@ -23,7 +23,7 @@ with open('credentials.json') as creds_file:
                     # print(df1.head())
                     print(df2.head())
                     df2.rename(columns=cat['columns'], inplace=True)
-                    df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='inner')
+                    df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                     print(df.head())
                     name = cat['name']
                     dt_str = tg_file_date.strftime('%Y%m%d')
