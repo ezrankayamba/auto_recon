@@ -31,6 +31,6 @@ with open('credentials.json') as creds_file:
                     path = f'outputs/{name}'
                     if not os.path.exists(path):
                         os.makedirs(path)
-                        df1.to_csv(f'{path}/Tigo_{name}_{dt_str}.csv', index=False)
-                        df2.to_csv(f'{path}/Other_{name}_{dt_str}.csv', index=False)
-                        df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
+                    df1.to_csv(f'{path}/Tigo_{name}_{dt_str}.csv', index=False)
+                    df2.to_csv(f'{path}/Other_{name}_{dt_str}.csv', index=False)
+                    df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
