@@ -22,6 +22,6 @@ def get_files(cat, sftp):
     other_dir = cat['other']['directory']
     tigo_tmpl = cat['tigo']['tmpl']
     other_tmpl = cat['other']['tmpl']
-    tigo_file = get_file(tigo_dir, f'{tigo_dir}{tigo_tmpl.replace("[DATE]", tigo_date)}', sftp)
-    other_file = get_file(other_dir, f'{other_dir}{other_tmpl.replace("[DATE]", other_date)}', sftp)
+    tigo_file = f'{tigo_dir}{get_file(tigo_dir, tigo_tmpl.replace("[DATE]", tigo_date), sftp)}'
+    other_file = f'{other_dir}{get_file(other_dir, other_tmpl.replace("[DATE]", other_date), sftp)}'
     return (tigo_file, other_file, tg_file_date, ot_file_date)
