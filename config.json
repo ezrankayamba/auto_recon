@@ -2,6 +2,7 @@
   "categories": [
     {
       "name": "Tigo2TTCL",
+      "enabled": false,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "t-pesa/TIGO/Data/Exchangefiles/",
@@ -22,6 +23,7 @@
     },
     {
       "name": "Tigo2Voda",
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "mpesa/TIGO/",

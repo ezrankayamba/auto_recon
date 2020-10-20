@@ -16,6 +16,8 @@ with open('credentials.json') as creds_file:
         with open('config.json') as file:
             categories = json.load(file)['categories']
             for cat in categories:
+                if not cat['enabled']:
+                    continue
                 r_f1, r_f2, tg_file_date, ot_file_date = utils.get_files(cat, sftp)
                 print(r_f1, r_f2)
                 with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
