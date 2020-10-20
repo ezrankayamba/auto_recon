@@ -52,7 +52,7 @@
         "day": -1
       },
       "other": {
-        "dateFmt": "%Y%m%d",
+        "dateFmt": "%d%m%Y",
         "directory": "airtelmoney/AIRTEL/",
         "tmpl": "tigo_disbursement_rpt_[DATE]*.csv",
         "day": 0
