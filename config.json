@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {
+      "name": "Tigo2TTCL",
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "t-pesa/TIGO/Data/Exchangefiles/",
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y-%m-%d",
+        "directory": "t-pesa/TTCL/",
+        "tmpl": "TIGO_TTCL_[DATE].csv",
+        "day": -1
+      },
+      "columns": {
+        "Ext_TransID": "TRANSFER_ID",
+        "TransID": "ReceiptNo",
+        "TransStatus": "TransStatus"
+      }
+    },
+    {
+      "name": "Tigo2Voda",
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "mpesa/TIGO/",
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y%m%d",
+        "directory": "mpesa/VODA/New_Path/",
+        "tmpl": "TIGO_RECON_FILES_B2C_[DATE].csv",
+        "day": 0
+      },
+      "columns": {
+        "Thirdpartyreference": "TRANSFER_ID",
+        "TransactionId": "ReceiptNo",
+        "TransactionStatus": "TransStatus"
+      }
+    }
+  ]
+}
