@@ -47,7 +47,7 @@
       "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
-        "directory": "mpesa/TIGO/",
+        "directory": "airtelmoney/TIGO/",
         "tmpl": "W2B_[DATE].csv",
         "day": -1
       },
