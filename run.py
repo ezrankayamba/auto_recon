@@ -10,7 +10,7 @@ with open('credentials.json') as creds_file:
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
     creds['cnopts'] = cnopts
-    print(creds)
+    # print(creds)
     with pysftp.Connection(**creds) as sftp:
         print('Connected...')
         with open('config.json') as file:
