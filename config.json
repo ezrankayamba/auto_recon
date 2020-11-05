@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "Tigo2TTCL",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "t-pesa/TIGO/Data/Exchangefiles/",

@@ -1,9 +1,65 @@
+#!/root/programs/kibubu/.venv/bin/python
+
 import dicttoxml as xml
 import requests
 import random
 import time
+import csv
 
 URL = 'http://10.99.1.161:6060/TELEPIN'
+
+
+def topup_100k(msisdn):
+    print('Topup')
+    req_xml = f'''
+        <TCSRequest>
+        <UserName>255659632115</UserName>
+        <TerminalType>USD</TerminalType>
+        <Password>1902</Password>
+        <Function name="PAYMENT">
+            <Param1>{msisdn}</Param1>
+            <Param2>100000</Param2>
+            <Param5>187</Param5>
+            <Param11>TTT1603719225346R9701</Param11>
+        </Function>
+        <CheckOnly>false</CheckOnly>
+        </TCSRequest>
+    '''
+    print(req_xml)
+    headers = {
+        'Content-Type': 'text/xml'
+    }
+    res = requests.post(URL, req_xml, headers=headers)
+    if res.ok:
+        res_xml = res.text
+        print(res_xml)
+    else:
+        print('Failed: ', res.text)
+
+
+def signup_contr(amount, msisdn, pin):
+    print('Signup')
+    req_xml = f'''
+        <TCSRequest>
+        <UserName>{msisdn}</UserName>
+        <Password>{pin}</Password>
+        <TERMINALTYPE>USD</TERMINALTYPE>
+        <Function name="SUBSCRIBECONTRIBUTETOSAVINGPLAN">
+            <param1>5</param1>
+            <param2>{amount}</param2>
+        </Function>
+        </TCSRequest>
+    '''
+    print(req_xml)
+    headers = {
+        'Content-Type': 'text/xml'
+    }
+    res = requests.post(URL, req_xml, headers=headers)
+    if res.ok:
+        res_xml = res.text
+        print(res_xml)
+    else:
+        print('Failed: ', res.text)
 
 
 def saving_trans(amount, msisdn, pin):
@@ -25,7 +81,10 @@ def saving_trans(amount, msisdn, pin):
     res = requests.post(URL, req_xml, headers=headers)
     if res.ok:
         res_xml = res.text
-        print(res_xml)
+        print("Res", res_xml)
+        if 'TcsError_110208' in res_xml:
+            topup_100k(msisdn)
+            signup_contr(amount, msisdn, pin)
     else:
         print('Failed: ', res.text)
 
@@ -61,18 +120,28 @@ def do_kibubu(amount, msisdn, pin):
     withdraw_trans(amount, msisdn, pin)
 
 
+def numbers():
+    file_name = 'kibubu.csv'
+    with open(file_name, 'r') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            yield (row['11 Digit Msisdn'], row['Pin'])
+
+
 if __name__ == "__main__":
-    numbers = [
-        (255658123367, 8989),
-        (255713123066, 2020),
-        (255717490680, 1710),
-        (255713123303, 1985),
-        # (255717812122, 5050),
-        (255715875043, 2708),
-    ]
-    for _ in range(1000):
-        for num in numbers:
-            amount = random.randint(100, 10000)
-            msisdn, pin = num
-            do_kibubu(amount, msisdn, pin)
-        time.sleep(10)
+    # numbers = [
+    #     (255658123367, 8989),
+    #     (255713123066, 2020),
+    #     (255717490680, 1710),
+    #     (255713123303, 1985),
+    #     (255713123065, 2005),
+    #     (255715875043, 2708),
+    # ]
+    # for _ in range(2):
+    #     for num in numbers():
+    #         amount = random.randint(100, 10000)
+    #         msisdn, pin = num
+    #         do_kibubu(amount, msisdn, pin)
+    #     time.sleep(10)
+
+    signup_contr(1000, '25567278798', '3995')
