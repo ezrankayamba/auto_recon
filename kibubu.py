@@ -33,6 +33,8 @@ def topup_100k(msisdn):
     if res.ok:
         res_xml = res.text
         print(res_xml)
+        root = ET.fromstring(res_xml)
+        print(root)
     else:
         print('Failed: ', res.text)
 

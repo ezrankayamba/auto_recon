@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "Tigo2TTCL",
-      "enabled": true,
+      "enabled": false,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "t-pesa/TIGO/Data/Exchangefiles/",
@@ -61,6 +61,27 @@
         "external_transaction_id": "TRANSFER_ID",
         "transfer_id": "ReceiptNo",
         "transfer_status": "TransStatus"
+      }
+    },
+    {
+      "name": "Tigo2Halotel",
+      "enabled": true,
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "halopesa/",
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y%m%d",
+        "directory": "halopesa/Tigo2Halopesa/",
+        "tmpl": "TIGO2HALOPESA_REPORT_[DATE]*.csv",
+        "day": 0
+      },
+      "columns": {
+        "PARTNER_ID": "TRANSFER_ID",
+        "TRANS_ID": "ReceiptNo",
+        "ACCOUNT_NAME": "TransStatus"
       }
     }
   ]
