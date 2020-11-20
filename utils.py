@@ -6,7 +6,7 @@ import fnmatch
 def get_file(path, tmpl, sftp):
     # print(path, "; ", tmpl)
     for file in sftp.listdir(path):
-        print(file)
+        # print(file)
         if fnmatch.fnmatch(file, tmpl):
             return file
     return tmpl
