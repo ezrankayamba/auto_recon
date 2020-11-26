@@ -20,11 +20,11 @@ with open('credentials.json') as creds_file:
                 if not cat['enabled']:
                     continue
                 try:
-                    r_f1, r_f2, tg_file_date, ot_file_date = utils.get_files(cat, sftp)
+                    r_f1, r_f2, tg_file_date, ot_file_date, sep = utils.get_files(cat, sftp)
                     print(r_f1, r_f2)
                     with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                         df1 = pd.read_csv(csv_file1)
-                        df2 = pd.read_csv(csv_file2)
+                        df2 = pd.read_csv(csv_file2, sep)
                         # print(df1.head())
                         print(df2.head())
                         df2.rename(columns=cat['columns'], inplace=True)

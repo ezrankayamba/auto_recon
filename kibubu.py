@@ -131,19 +131,9 @@ def numbers():
 
 
 if __name__ == "__main__":
-    # numbers = [
-    #     (255658123367, 8989),
-    #     (255713123066, 2020),
-    #     (255717490680, 1710),
-    #     (255713123303, 1985),
-    #     (255713123065, 2005),
-    #     (255715875043, 2708),
-    # ]
-    # for _ in range(2):
-    #     for num in numbers():
-    #         amount = random.randint(100, 10000)
-    #         msisdn, pin = num
-    #         do_kibubu(amount, msisdn, pin)
-    #     time.sleep(10)
-
-    signup_contr(1000, '25567278798', '3995')
+    while True:
+        for num in numbers():
+            amount = random.randint(100, 10000)
+            msisdn, pin = num
+            do_kibubu(amount, msisdn, pin)
+        time.sleep(10)

@@ -83,6 +83,27 @@
         "TRANS_ID": "ReceiptNo",
         "ACCOUNT_NAME": "TransStatus"
       }
+    },
+    {
+      "name": "Tigo2Zantel",
+      "enabled": true,
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "zantel/TIGO/Data/Exchangefiles/",
+        "tmpl": "TIGOW2B[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y%m%d",
+        "directory": "zantel/ZANTEL/",
+        "tmpl": "TigoToZantelTrans_[DATE]*.csv",
+        "day": 0
+      },
+      "columns": {
+        "EXTENDEDDATA": "TRANSFER_ID",
+        "REFERENCEID": "ReceiptNo",
+        "STATUS_DESC": "TransStatus"
+      }
     }
   ]
 }
