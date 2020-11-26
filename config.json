@@ -88,7 +88,7 @@
       "name": "Tigo2Zantel",
       "enabled": true,
       "tigo": {
-        "dateFmt": "%d%m%Y",
+        "dateFmt": "%Y%m%d",
         "directory": "zantel/TIGO/Data/Exchangefiles/",
         "tmpl": "TIGOW2B[DATE].csv",
         "day": -1
