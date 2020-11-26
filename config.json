@@ -97,7 +97,8 @@
         "dateFmt": "%Y%m%d",
         "directory": "zantel/ZANTEL/",
         "tmpl": "TigoToZantelTrans_[DATE]*.csv",
-        "day": 0
+        "day": 0,
+        "delimiter": "|"
       },
       "columns": {
         "EXTENDEDDATA": "TRANSFER_ID",
