@@ -43,7 +43,7 @@ with open('credentials.json') as creds_file:
                             df2.to_csv(f'{path}/Other_{name}_{dt_str}.csv', index=False)
                             df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
                     except Exception as ex:
-                        print(ex)
+                        print("Error: ", ex)
 
     except Exception as ex:
         print(ex)

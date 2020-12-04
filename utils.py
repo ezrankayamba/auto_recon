@@ -13,7 +13,6 @@ def get_file(path, tmpl, sftp):
 
 
 def get_files(cat, sftp):
-    print(cat)
     today = datetime.date.today()
     tg_file_date = today + datetime.timedelta(days=cat['tigo']['day'])
     ot_file_date = today + datetime.timedelta(days=cat['other']['day'])
