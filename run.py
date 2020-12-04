@@ -20,6 +20,9 @@ with open('credentials.json') as creds_file:
                 categories = json.load(file)['categories']
 
                 for cat in categories:
+                    name = cat['name']
+                    print()
+                    print(f'================={name}======================')
                     if not cat['enabled']:
                         continue
                     try:
@@ -38,11 +41,13 @@ with open('credentials.json') as creds_file:
                             # del cat['columns']['TRANSFER_ID_REGEX']
                             df2.rename(columns=cat['columns'], inplace=True)
                             print(df2.head())
+                            print(df2.columns)
+
                             if regex:
                                 df2['TRANSFER_ID'].apply(extract_trx)
                             df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                             print(df.head())
-                            name = cat['name']
+
                             dt_str = tg_file_date.strftime('%Y%m%d')
                             path = f'outputs/{name}'
                             if not os.path.exists(path):
