@@ -5,6 +5,12 @@ import utils
 import os
 import re
 
+
+def extract_trx(x):
+    print(x)
+    return x
+
+
 BASE_REMOTE_DIR = '/data/exchangefiles/'
 with open('credentials.json') as creds_file:
     creds = json.load(creds_file)
@@ -32,7 +38,7 @@ with open('credentials.json') as creds_file:
                             df2.rename(columns=cat['columns'], inplace=True)
                             print(df2.head())
                             if regex:
-                                df2.TRANSFER_ID.apply(lambda x: re.findall(regex, x)[0])
+                                df2.TRANSFER_ID.apply(extract_trx)
                             df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                             print(df.head())
                             name = cat['name']
