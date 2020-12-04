@@ -6,11 +6,6 @@ import os
 import re
 
 
-def extract_trx(x):
-    print(x)
-    return x
-
-
 BASE_REMOTE_DIR = '/data/exchangefiles/'
 with open('credentials.json') as creds_file:
     creds = json.load(creds_file)
@@ -30,11 +25,17 @@ with open('credentials.json') as creds_file:
                     try:
                         r_f1, r_f2, tg_file_date, ot_file_date, sep, regex = utils.get_files(cat, sftp)
                         print(r_f1, r_f2)
+
+                        def extract_trx(x):
+                            # print(x)
+                            txn = re.match(regex, x).group(1)
+                            print(txn)
+                            return txn
                         with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                             df1 = pd.read_csv(csv_file1)
                             df2 = pd.read_csv(csv_file2, sep)
                             # print(df1.head())
-
+                            # del cat['columns']['TRANSFER_ID_REGEX']
                             df2.rename(columns=cat['columns'], inplace=True)
                             print(df2.head())
                             if regex:
