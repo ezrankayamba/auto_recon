@@ -27,6 +27,7 @@ with open('credentials.json') as creds_file:
                         df1 = pd.read_csv(csv_file1)
                         df2 = pd.read_csv(csv_file2, sep)
                         # print(df1.head())
+                        print(cat)
                         df2.rename(columns=cat['columns'], inplace=True)
                         print(df2.head())
                         if regex:
