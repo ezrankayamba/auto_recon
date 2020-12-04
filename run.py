@@ -4,6 +4,8 @@ import pandas as pd
 import utils
 import os
 import re
+import sys
+import traceback
 
 
 BASE_REMOTE_DIR = '/data/exchangefiles/'
@@ -56,6 +58,9 @@ with open('credentials.json') as creds_file:
                             df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
                     except Exception as ex:
                         print("Error: ", ex)
+                        print("-"*60)
+                        traceback.print_exc(file=sys.stdout)
+                        print("-"*60)
 
     except Exception as ex:
         print(ex)
