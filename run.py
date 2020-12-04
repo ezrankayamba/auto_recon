@@ -3,6 +3,7 @@ import pysftp
 import pandas as pd
 import utils
 import os
+import re
 
 BASE_REMOTE_DIR = '/data/exchangefiles/'
 with open('credentials.json') as creds_file:
@@ -20,14 +21,16 @@ with open('credentials.json') as creds_file:
                 if not cat['enabled']:
                     continue
                 try:
-                    r_f1, r_f2, tg_file_date, ot_file_date, sep = utils.get_files(cat, sftp)
+                    r_f1, r_f2, tg_file_date, ot_file_date, sep, regex = utils.get_files(cat, sftp)
                     print(r_f1, r_f2)
                     with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                         df1 = pd.read_csv(csv_file1)
                         df2 = pd.read_csv(csv_file2, sep)
                         # print(df1.head())
-                        print(df2.head())
                         df2.rename(columns=cat['columns'], inplace=True)
+                        print(df2.head())
+                        if regex:
+                            df2.TRANSFER_ID.apply(lambda x: re.findall(regex, x)[0])
                         df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                         print(df.head())
                         name = cat['name']

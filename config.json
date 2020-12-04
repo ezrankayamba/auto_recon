@@ -103,7 +103,8 @@
       "columns": {
         "EXTENDEDDATA": "TRANSFER_ID",
         "REFERENCEID": "ReceiptNo",
-        "STATUS_DESC": "TransStatus"
+        "STATUS_DESC": "TransStatus",
+        "TRANSFER_ID_REGEX": "^Details\\s{1,}:\\s{1,}(\\d{9,})\\s{1,}-\\s{1,}TZS$"
       }
     }
   ]
