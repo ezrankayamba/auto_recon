@@ -12,7 +12,8 @@ with open('credentials.json') as creds_file:
     cnopts.hostkeys = None
     creds['cnopts'] = cnopts
     # print(creds)
-    with pysftp.Connection(**creds) as sftp:
+    try:
+        with pysftp.Connection(**creds) as sftp:
         print('Connected...')
         with open('config.json') as file:
             categories = json.load(file)['categories']
@@ -43,3 +44,6 @@ with open('credentials.json') as creds_file:
                         df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
                 except Exception as ex:
                     print(ex)
+
+    except Exception as ex:
+        print(ex)
