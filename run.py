@@ -44,8 +44,8 @@ with open('credentials.json') as creds_file:
                             print(df2.columns)
 
                             if regex:
-                                # df2['TRANSFER_ID'].apply(extract_trx)
-                                pass
+                                df2['TRANSFER_ID'].apply(extract_trx)
+                            print(df1.columns)
                             df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                             print(df.head())
 
