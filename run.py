@@ -30,9 +30,7 @@ with open('credentials.json') as creds_file:
                         print(r_f1, r_f2)
 
                         def extract_trx(x):
-                            # print(x)
                             txn = re.match(regex, x).group(1)
-                            # print(txn)
                             return txn
                         with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                             df1 = pd.read_csv(csv_file1)
@@ -44,7 +42,8 @@ with open('credentials.json') as creds_file:
                             print(df2.columns)
 
                             if regex:
-                                df2['TRANSFER_ID'].apply(extract_trx)
+                                # df2['TRANSFER_ID'].apply(extract_trx)
+                                pass
                             df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                             print(df.head())
 
