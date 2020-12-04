@@ -28,6 +28,6 @@ def get_files(cat, sftp):
     if 'delimiter' in cat['other']:
         sep = cat['other']['delimiter']
     regex = None
-    if 'TRANSFER_ID_REGEX' in cat['other']['columns']:
-        regex = cat['other']['columns']['TRANSFER_ID_REGEX']
+    if 'TRANSFER_ID_REGEX' in cat['columns']:
+        regex = cat['columns']['TRANSFER_ID_REGEX']
     return (tigo_file, other_file, tg_file_date, ot_file_date, sep, regex)
