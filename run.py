@@ -37,11 +37,7 @@ with open('credentials.json') as creds_file:
                         with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                             df1 = pd.read_csv(csv_file1)
                             df2 = pd.read_csv(csv_file2, sep)
-                            # print(df1.head())
-                            # del cat['columns']['TRANSFER_ID_REGEX']
                             df2.rename(columns=cat['columns'], inplace=True)
-                            print(df2.head())
-                            print(df2.columns)
 
                             if regex:
                                 df2["TRANSFER_ID"] = df2['TRANSFER_ID'].apply(extract_trx)
