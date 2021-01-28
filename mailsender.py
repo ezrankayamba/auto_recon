@@ -5,7 +5,8 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import configparser
-
+from email.mime.application import MIMEApplication
+from os.path import basename
 
 context = ssl.create_default_context()
 config = configparser.ConfigParser()
@@ -21,27 +22,42 @@ def attach_file(message, file_to_attach):
         message.attach(payload)
 
 
-def send_mail():
+def send_mail(to, files=None):
     mail_content = 'Test Office 365'
     sender = config['DEFAULT']['SOURCE_ADDR']
     pwd = config['DEFAULT']['SOURCE_PWD']
-    to = 'ezrankayamba@gmail.com'
     message = MIMEMultipart()
     message['From'] = sender
-    message['To'] = to
+    message['To'] = ", ".join(to)
     message['Subject'] = 'Test Mail'
     message.attach(MIMEText(mail_content, 'plain'))
-    attach_file(message, 'README.md')
+    # attach_file(message, 'README.md')
+    for f in files or []:
+        with open(f, "rb") as fil:
+            part = MIMEApplication(
+                fil.read(),
+                Name=basename(f)
+            )
+        # After the file is closed
+        part['Content-Disposition'] = 'attachment; filename="%s"' % basename(f)
+        message.attach(part)
+
     with SMTP(config['DEFAULT']['SMTP_SERVER'], config['DEFAULT']['PORT']) as smtp:
         smtp.noop()
         smtp.ehlo()
         smtp.starttls()
         smtp.login(sender, pwd)
-        text = message.as_string()
-        smtp.send_message(message)
+        # smtp.send_message(message)
+        smtp.sendmail(sender, to, message.as_string())
         smtp.quit()
     print('Mail sent...')
 
 
 if __name__ == '__main__':
-    send_mail()
+    import argparse
+    parser = argparse.ArgumentParser(description='Send mail')
+    parser.add_argument('receivers', type=str, nargs='+', help='Receiver(s) separated by space')
+    args = parser.parse_args()
+    print(args.receivers)
+    files = ['README.md']
+    send_mail(args.receivers, files=files)

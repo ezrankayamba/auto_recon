@@ -6,6 +6,11 @@ import os
 import re
 import sys
 import traceback
+from mailsender import send_mail
+import configparser
+
+config = configparser.ConfigParser()
+config.read('mailsender.ini')
 
 
 BASE_REMOTE_DIR = '/data/exchangefiles/'
@@ -51,9 +56,16 @@ with open('credentials.json') as creds_file:
                             path = f'outputs/{name}'
                             if not os.path.exists(path):
                                 os.makedirs(path)
-                            df1.to_csv(f'{path}/Tigo_{name}_{dt_str}.csv', index=False)
-                            df2.to_csv(f'{path}/Other_{name}_{dt_str}.csv', index=False)
-                            df.to_csv(f'{path}/Result_{name}_{dt_str}.csv', index=False)
+                            tigo_file = f'{path}/Tigo_{name}_{dt_str}.csv'
+                            thirdparty_file = f'{path}/Other_{name}_{dt_str}.csv'
+                            result_file = f'{path}/Result_{name}_{dt_str}.csv'
+                            df1.to_csv(tigo_file, index=False)
+                            df2.to_csv(thirdparty_file, index=False)
+                            df.to_csv(result_file, index=False)
+
+                            # Send mail with attachments
+                            receivers = config['DEFAULT']['RECEIVERS']
+                            send_mail(receivers.split(','), files=[result_file])
                     except Exception as ex:
                         print("Error: ", ex)
                         print("-"*60)
