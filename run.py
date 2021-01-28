@@ -65,7 +65,7 @@ with open('credentials.json') as creds_file:
 
                             # Send mail with attachments
                             receivers = config['DEFAULT']['RECEIVERS']
-                            send_mail(receivers.split(','), files=[result_file])
+                            send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[result_file])
                     except Exception as ex:
                         print("Error: ", ex)
                         print("-"*60)

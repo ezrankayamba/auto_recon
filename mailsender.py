@@ -22,16 +22,14 @@ def attach_file(message, file_to_attach):
         message.attach(payload)
 
 
-def send_mail(to, files=None):
-    mail_content = 'Test Office 365'
+def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation result as attached.\n\nRegards,\nRecon Tool', files=None):
     sender = config['DEFAULT']['SOURCE_ADDR']
     pwd = config['DEFAULT']['SOURCE_PWD']
     message = MIMEMultipart()
     message['From'] = sender
     message['To'] = ", ".join(to)
-    message['Subject'] = 'Test Mail'
-    message.attach(MIMEText(mail_content, 'plain'))
-    # attach_file(message, 'README.md')
+    message['Subject'] = subject
+    message.attach(MIMEText(text, 'plain'))
     for f in files or []:
         with open(f, "rb") as fil:
             part = MIMEApplication(
