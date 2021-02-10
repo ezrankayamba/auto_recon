@@ -65,7 +65,7 @@
     },
     {
       "name": "Tigo2Halotel",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "halopesa/",
