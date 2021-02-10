@@ -62,10 +62,8 @@ with open('credentials.json') as creds_file:
                             df1.to_csv(tigo_file, index=False)
                             df2.to_csv(thirdparty_file, index=False)
                             df.to_csv(result_file, index=False)
-
-                            # Send mail with attachments
                             receivers = config['DEFAULT']['RECEIVERS']
-                            send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[result_file])
+                            send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[tigo_file, thirdparty_file, result_file])
                     except Exception as ex:
                         print("Error: ", ex)
                         print("-"*60)
