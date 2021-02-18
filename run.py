@@ -69,6 +69,7 @@ with open('credentials.json') as creds_file:
                         print("-"*60)
                         traceback.print_exc(file=sys.stdout)
                         print("-"*60)
+                        send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[])
 
     except Exception as ex:
         print(ex)
