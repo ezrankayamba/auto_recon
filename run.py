@@ -25,6 +25,7 @@ with open('credentials.json') as creds_file:
             print('Connected...')
             with open('config.json') as file:
                 categories = json.load(file)['categories']
+                receivers = config['DEFAULT']['RECEIVERS']
 
                 for cat in categories:
                     name = cat['name']
@@ -62,7 +63,6 @@ with open('credentials.json') as creds_file:
                             df1.to_csv(tigo_file, index=False)
                             df2.to_csv(thirdparty_file, index=False)
                             df.to_csv(result_file, index=False)
-                            receivers = config['DEFAULT']['RECEIVERS']
                             send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[tigo_file, thirdparty_file, result_file])
                     except Exception as ex:
                         print("Error: ", ex)
