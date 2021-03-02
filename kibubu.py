@@ -132,8 +132,11 @@ def numbers():
 
 if __name__ == "__main__":
     while True:
-        for num in numbers():
-            amount = random.randint(100, 10000)
-            msisdn, pin = num
-            do_kibubu(amount, msisdn, pin)
-        time.sleep(10)
+        try:
+            for num in numbers():
+                amount = random.randint(100, 10000)
+                msisdn, pin = num
+                do_kibubu(amount, msisdn, pin)
+            time.sleep(10)
+        except Exception as ex:
+            print(ex)
