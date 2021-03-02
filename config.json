@@ -101,9 +101,10 @@
         "delimiter": "|"
       },
       "columns": {
-        "TRANSFER_ID": "TRANSFER_ID",
-        "ReceiptNo": "ReceiptNo",
-        "TransStatus": "TransStatus"
+        "REMARKS": "TRANSFER_ID",
+        "REFERENCEID": "ReceiptNo",
+        "STATUS_DESC": "TransStatus",
+        "TRANSFER_ID_REGEX": "^Details\\s+:\\s+(\\d+)\\s+-\\sTZS$"
       }
     }
   ]
