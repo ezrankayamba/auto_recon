@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "Tigo2TTCL",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "t-pesa/TIGO/Data/Exchangefiles/",
@@ -23,7 +23,7 @@
     },
     {
       "name": "Tigo2Voda",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "mpesa/TIGO/",
@@ -44,7 +44,7 @@
     },
     {
       "name": "Tigo2Airtel",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "airtelmoney/TIGO/",
@@ -65,7 +65,7 @@
     },
     {
       "name": "Tigo2Halotel",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%d%m%Y",
         "directory": "halopesa/",
