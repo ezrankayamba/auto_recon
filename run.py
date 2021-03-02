@@ -51,6 +51,7 @@ with open('credentials.json') as creds_file:
                                 df2["TRANSFER_ID"] = pd.to_numeric(df2["TRANSFER_ID"])
                             if 'Transfer_ID' in df1.columns:
                                 df1.rename(columns={'Transfer_ID': 'TRANSFER_ID'}, inplace=True)
+                            print(df2.head())
                             df = pd.merge(df1, df2[["TRANSFER_ID", "TransStatus", "ReceiptNo"]], on='TRANSFER_ID', how='left')
                             print(df.head())
 
