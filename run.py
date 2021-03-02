@@ -38,6 +38,7 @@ with open('credentials.json') as creds_file:
                         print(r_f1, r_f2)
 
                         def extract_trx(x):
+                            print(x, regex)
                             txn = re.match(regex, x).group(1)
                             return txn
                         with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
