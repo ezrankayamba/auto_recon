@@ -86,7 +86,7 @@
     },
     {
       "name": "Tigo2Zantel",
-      "enabled": true,
+      "enabled": false,
       "tigo": {
         "dateFmt": "%Y%m%d",
         "directory": "zantel/TIGO/Data/Exchangefiles/",
@@ -118,7 +118,7 @@
       },
       "other": {
         "dateFmt": "%Y-%m-%d",
-        "directory": "LukuGePG/",
+        "directory": "LukuGePG/GEPG/",
         "tmpl": "PSP001_LUKU_RECON_[DATE].csv",
         "day": -1
       },
