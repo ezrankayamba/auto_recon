@@ -86,7 +86,7 @@
     },
     {
       "name": "Tigo2Zantel",
-      "enabled": false,
+      "enabled": true,
       "tigo": {
         "dateFmt": "%Y%m%d",
         "directory": "zantel/TIGO/Data/Exchangefiles/",
