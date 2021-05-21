@@ -45,8 +45,8 @@ with open('credentials.json') as creds_file:
                             except Exception as ex:
                                 print(ex)
                                 return None
-                        tp_exists = sftp.exists(sftp, r_f1)
-                        ot_exists = sftp.exists(sftp, r_f2)
+                        tp_exists = sftp.exists(r_f1)
+                        ot_exists = sftp.exists(r_f2)
                         if tp_exists and ot_exists:
                             with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                                 df1 = pd.read_csv(csv_file1)
