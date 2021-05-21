@@ -76,7 +76,7 @@ with open('credentials.json') as creds_file:
                                 df1.to_csv(tigo_file, index=False)
                                 df2.to_csv(thirdparty_file, index=False)
                                 df.to_csv(result_file, index=False)
-                                send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[tigo_file, thirdparty_file, result_file])
+                                send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[tigo_file, thirdparty_file, result_file], zip_name=name)
                         else:
                             print("Error: ", "One of the 2 files not available")
                             msg = "Hello,\nKindly receive recon results.\n\nErrors encountered processing files"
