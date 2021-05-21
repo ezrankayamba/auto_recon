@@ -8,7 +8,7 @@ import configparser
 from email.mime.application import MIMEApplication
 from os.path import basename
 import bg
-from zipfile import ZipFile
+from zipfile import ZipFile, ZIP_DEFLATED
 import os
 
 context = ssl.create_default_context()
@@ -37,7 +37,7 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
 
         def f_info(f):
             st = os.stat(f)
-            print(f'{basename(f)} => {(st.st_size/1024):.0f}MB')
+            print(f'{basename(f)} => {(st.st_size/(1024 * 1024)):.2f}MB')
 
         if not zip_name:
             for f in files or []:
@@ -55,7 +55,7 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
             with ZipFile(z_file, 'w') as fil:
                 for f in files or []:
                     f_info(f)
-                    fil.write(f)
+                    fil.write(f, f, ZIP_DEFLATED)
             if files and len(files):
                 f_info(z_file)
                 with open(z_file, "rb") as fil:
