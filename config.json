@@ -106,6 +106,27 @@
         "STATUS_DESC": "TransStatus",
         "TRANSFER_ID_REGEX": "^Details\\s+:\\s+(\\d+)\\s+-\\sTZS$"
       }
+    },
+    {
+      "name": "Tigo2LUKUGePG",
+      "enabled": true,
+      "tigo": {
+        "dateFmt": "%d%m%Y",
+        "directory": "luku/",
+        "tmpl": "W2B_[DATE].csv",
+        "day": -1
+      },
+      "other": {
+        "dateFmt": "%Y-%m-%d",
+        "directory": "LukuGePG/",
+        "tmpl": "PSP001_LUKU_RECON_[DATE].csv",
+        "day": -1
+      },
+      "columns": {
+        "PSP_REFERENCE": "TRANSFER_ID",
+        "GEPG_REFERENCE": "ReceiptNo",
+        "STATUS": "TransStatus"
+      }
     }
   ]
 }
