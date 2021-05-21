@@ -7,7 +7,7 @@ from email import encoders
 import configparser
 from email.mime.application import MIMEApplication
 from os.path import basename
-from . import bg
+import bg
 
 context = ssl.create_default_context()
 config = configparser.ConfigParser()
