@@ -8,7 +8,6 @@ import sys
 import traceback
 from mailsender import send_mail
 import configparser
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 config = configparser.ConfigParser()
 config.read('mailsender.ini')
@@ -26,14 +25,14 @@ with open('credentials.json') as creds_file:
             print('Connected...')
             with open('config.json') as file:
                 categories = json.load(file)['categories']
+                receivers = config['DEFAULT']['RECEIVERS']
 
-                def run_recon(cat):
-                    receivers = config['DEFAULT']['RECEIVERS']
+                for cat in categories:
                     name = cat['name']
                     print()
                     print(f'================={name}======================')
                     if not cat['enabled']:
-                        return
+                        continue
                     try:
                         r_f1, r_f2, tg_file_date, ot_file_date, sep, regex = utils.get_files(cat, sftp)
                         print(r_f1, r_f2)
@@ -94,9 +93,6 @@ with open('credentials.json') as creds_file:
                         traceback.print_exc(file=sys.stdout)
                         print("-"*60)
                         send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[])
-
-                with ThreadPoolExecutor(max_workers=4) as executor:
-                    recon = {executor.submit(run_recon, cat): cat for cat in categories}
 
     except Exception as ex:
         print(ex)
