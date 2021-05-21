@@ -38,7 +38,7 @@ with open('credentials.json') as creds_file:
                         print(r_f1, r_f2)
 
                         def extract_trx(x):
-                            print(x, regex)
+                            # print(x, regex)
                             try:
                                 txn = re.match(regex, x.strip()).group(1)
                                 return txn
