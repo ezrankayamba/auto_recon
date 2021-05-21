@@ -37,7 +37,7 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
 
         def f_info(f):
             st = os.stat(f)
-            print(f'{basename(f)} => {(st.st_size/1024):0}')
+            print(f'{basename(f)} => {(st.st_size/1024):.0f}MB')
 
         if not zip_name:
             for f in files or []:
@@ -56,7 +56,6 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
                 for f in files or []:
                     f_info(f)
                     fil.write(f)
-                f_info(fil)
             if files and len(files):
                 f_info(z_file)
                 with open(z_file, "rb") as fil:
