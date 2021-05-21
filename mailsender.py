@@ -8,6 +8,8 @@ import configparser
 from email.mime.application import MIMEApplication
 from os.path import basename
 import bg
+from zipfile import ZipFile
+import os
 
 context = ssl.create_default_context()
 config = configparser.ConfigParser()
@@ -23,7 +25,7 @@ def attach_file(message, file_to_attach):
         message.attach(payload)
 
 
-def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation result as attached.\n\nRegards,\nRecon Tool', files=None):
+def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation result as attached.\n\nRegards,\nRecon Tool', files=None, zip_name=None):
     def run():
         sender = config['DEFAULT']['SOURCE_ADDR']
         pwd = config['DEFAULT']['SOURCE_PWD']
@@ -32,15 +34,38 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
         message['To'] = ", ".join(to)
         message['Subject'] = subject
         message.attach(MIMEText(text, 'plain'))
-        for f in files or []:
-            with open(f, "rb") as fil:
-                part = MIMEApplication(
-                    fil.read(),
-                    Name=basename(f)
-                )
-            # After the file is closed
-            part['Content-Disposition'] = 'attachment; filename="%s"' % basename(f)
-            message.attach(part)
+
+        def f_info(f):
+            st = os.stat(f)
+            print(f'{basename(f)} => {(st.st_size/1024):0}')
+
+        if not zip_name:
+            for f in files or []:
+                f_info(f)
+                with open(f, "rb") as fil:
+                    part = MIMEApplication(
+                        fil.read(),
+                        Name=basename(f)
+                    )
+                # After the file is closed
+                part['Content-Disposition'] = 'attachment; filename="%s"' % basename(f)
+                message.attach(part)
+        else:
+            z_file = f'outputs/{zip_name}.zip'
+            with ZipFile(z_file, 'w') as fil:
+                for f in files or []:
+                    f_info(f)
+                    fil.write(f)
+                f_info(fil)
+            if files and len(files):
+                f_info(z_file)
+                with open(z_file, "rb") as fil:
+                    part = MIMEApplication(
+                        fil.read(),
+                        Name=basename(z_file)
+                    )
+                part['Content-Disposition'] = 'attachment; filename="%s"' % basename(z_file)
+                message.attach(part)
 
         with SMTP(config['DEFAULT']['SMTP_SERVER'], config['DEFAULT']['PORT']) as smtp:
             smtp.noop()

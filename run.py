@@ -51,7 +51,7 @@ with open('credentials.json') as creds_file:
                             tp_info = sftp.stat(r_f1)
                             ot_info = sftp.stat(r_f2)
                             print("Tigo Pesa: ", tp_info)
-                            print("#rd Party: ", ot_info)
+                            print("3rd Party: ", ot_info)
                             with sftp.open(r_f1) as csv_file1, sftp.open(r_f2) as csv_file2:
                                 df1 = pd.read_csv(csv_file1)
                                 df2 = pd.read_csv(csv_file2, sep)
