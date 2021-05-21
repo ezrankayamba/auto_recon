@@ -97,14 +97,6 @@ with open('credentials.json') as creds_file:
 
                 with ThreadPoolExecutor(max_workers=4) as executor:
                     recon = {executor.submit(run_recon, cat): cat for cat in categories}
-                    for future in as_completed(recon):
-                        cat = recon[future]
-                        try:
-                            data = future.result()
-                        except Exception as exc:
-                            print(f'Encountered exception({cat}): {exc}')
-                        else:
-                            print(f'Completed successfully({cat})')
 
     except Exception as ex:
         print(ex)
