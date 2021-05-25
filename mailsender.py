@@ -10,6 +10,7 @@ from os.path import basename
 import bg
 from zipfile import ZipFile, ZIP_DEFLATED
 import os
+import logger
 
 context = ssl.create_default_context()
 config = configparser.ConfigParser()
@@ -37,7 +38,7 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
 
         def f_info(f):
             st = os.stat(f)
-            print(f'{basename(f)} => {(st.st_size/(1024 * 1024)):.2f}MB')
+            logger.debug(f'{basename(f)} => {(st.st_size/(1024 * 1024)):.2f}MB')
 
         if not zip_name:
             for f in files or []:
@@ -74,7 +75,7 @@ def send_mail(to, subject='DAILY RECON', text='Hello,\nKindly see reconciliation
             # smtp.send_message(message)
             smtp.sendmail(sender, to, message.as_string())
             smtp.quit()
-        print('Mail sent...')
+        logger.debug('Mail sent...')
     bg.run_in_background(run)
 
 
@@ -83,6 +84,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Send mail')
     parser.add_argument('receivers', type=str, nargs='+', help='Receiver(s) separated by space')
     args = parser.parse_args()
-    print(args.receivers)
+    logger.debug(args.receivers)
     files = ['README.md']
     send_mail(args.receivers, files=files)
