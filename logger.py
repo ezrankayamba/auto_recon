@@ -1,5 +1,5 @@
 import logging as log
-log.basicConfig(filename='auto_recon.log', encoding='utf-8', level=log.DEBUG)
+log.basicConfig(filename='auto_recon.log', level=log.DEBUG)
 
 
 def debug(msg=''):
