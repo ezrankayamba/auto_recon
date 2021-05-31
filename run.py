@@ -90,11 +90,11 @@ with open('credentials.json') as creds_file:
                             logger.debug("-"*60)
                             send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[], text=msg)
                     except Exception as ex:
-                        logger.error("Error: ", ex)
+                        logger.error(("Error: ", ex))
                         logger.error("-"*60)
                         traceback.print_exc(file=sys.stdout)
                         logger.error("-"*60)
                         send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[])
 
     except Exception as ex:
-        logger.error("Error: ", ex)
+        logger.error(("Error: ", ex))
