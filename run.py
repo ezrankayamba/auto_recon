@@ -80,7 +80,7 @@ with open('credentials.json') as creds_file:
                                 df.to_csv(result_file, index=False)
                                 send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[tigo_file, thirdparty_file, result_file], zip_name=name)
                         else:
-                            logger.debug("Error: ", "One of the 2 files not available")
+                            logger.debug(("Error: ", "One of the 2 files not available"))
                             msg = "Hello,\nKindly receive recon results.\n\nErrors encountered processing files"
                             if not tp_exists:
                                 msg = f'{msg}\nTigo Pesa file missing:  {r_f1}'
