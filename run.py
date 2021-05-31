@@ -29,6 +29,7 @@ with open('credentials.json') as creds_file:
                 receivers = config['DEFAULT']['RECEIVERS']
 
                 for cat in categories:
+                    logger.debug(cat)
                     name = cat['name']
                     logger.debug()
                     logger.debug(f'================={name}======================')
@@ -89,11 +90,11 @@ with open('credentials.json') as creds_file:
                             logger.debug("-"*60)
                             send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[], text=msg)
                     except Exception as ex:
-                        logger.debug("Error: ", ex)
-                        logger.debug("-"*60)
+                        logger.error("Error: ", ex)
+                        logger.error("-"*60)
                         traceback.print_exc(file=sys.stdout)
-                        logger.debug("-"*60)
+                        logger.error("-"*60)
                         send_mail(receivers.split(','), subject=f'DAILY RECON - {name}', files=[])
 
     except Exception as ex:
-        logger.debug(ex)
+        logger.error("Error: ", ex)
